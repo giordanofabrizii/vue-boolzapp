@@ -253,7 +253,7 @@ main{
 
 #messages .content i{
     display: none;
-    width: 7rem;
+    width: 9rem;
     height: 7rem;
     text-align: end;
 }
@@ -282,7 +282,7 @@ main{
     position: absolute;
     top: 1rem;
     right: 0;
-    width: 7rem;
+    width: 9rem;
 }
 
 #messages .dropdown ul li{
