@@ -179,13 +179,14 @@ createApp({
             this.openedChatIndex= index;
         },
         sendMessage: function(){
+            let chat = this.contacts[this.openedChatIndex].messages;
             let newMsg = {date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'), message: this.newMessage, status: 'sent'};
-            this.contacts[this.openedChatIndex].messages.push(newMsg);
+            chat.push(newMsg);
             this.newMessage='';
 
             setTimeout(() => {
                 let received = { date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'), message: 'Ok', status: 'received' };
-                this.contacts[this.openedChatIndex].messages.push(received);
+                chat.push(received);
             }, 1000);
         },
         searchingChat: function(person){
