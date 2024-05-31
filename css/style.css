@@ -43,7 +43,7 @@ main{
     width: 36%;
     height: 100%;
     background-color: red;
-    /* overflow: hidden; */
+    border-right: 1px solid #dedede;
 }
 
 .heading{
@@ -58,6 +58,7 @@ main{
     align-items: center;
     padding: .5rem;
     position: relative;
+    border-top: 1px solid #f8f8f8;
 }
 
 .person > img {
@@ -172,6 +173,76 @@ main{
 #chat-opened {
     width: 64%;
     height: 100%;
-    background-color: blue;
 }
 
+#chat-opened .person p {
+    color: #817f82;
+}
+
+#messages {
+    background-image: url('../img/mine.jpg');
+    background-repeat: repeat;
+    height: calc(100% - 8rem);
+    overflow: scroll;
+}
+
+#chat-opened footer{
+    background-color: #f3eeea;
+    padding: .5rem;
+}
+
+#chat-opened footer i{
+    color: #626d72;
+    margin: 0 2rem;
+    font-size: 1.2rem;
+}
+
+#chat-opened footer input{
+    height: 3rem;
+    border: none;
+    border-radius: .3rem;
+    padding: 0 1rem;
+    width: calc(100% - 11rem);
+}
+
+#messages ul{
+    width: 80%;
+    margin: 0 auto;
+}
+
+#messages li{
+    display: flex;
+    margin: .5rem;
+}
+
+#messages li > .content{
+    padding: .8rem;
+    position: relative;
+    border-radius: .4rem;
+    padding-bottom: 1.2rem;
+    min-width: 20rem;
+    max-width: 30rem;
+}
+
+#messages li.sent{
+    justify-content: end;
+}
+
+#messages li.received{
+    justify-content: start;
+}
+
+#messages li.sent > .content{
+    background-color: #d5f9ba;
+}
+
+#messages li.received > .content{
+    background-color: white;
+}
+
+#messages .ora{
+    position: absolute;
+    font-size: .7rem;
+    bottom: .2rem;
+    right: .2rem;
+}

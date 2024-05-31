@@ -49,19 +49,59 @@
                             <input type="text" placeholder="Cerca o inizia una nuova chat">
                         </section>
                     </div>
-                    <div id="list">
+                    <ul id="list">
+                        <li class="person" v-for="person in contacts">
+                            <img :src="person.avatar + '.jpg'" alt="Avatar image">
+                            <section>
+                                <h1>{{ person.name }}</h1>
+                                <p>Ultimo messaggio inviato</p>
+                            </section>
+                            <p class="ora">12:00</p>
+                        </li>
+                    </ul>
+                </aside>
+                <main id="chat-opened">
+                    <div class="heading">
                         <div class="person">
                             <img src="./img/avatar_1.jpg" alt="">
                             <section>
                                 <h1>Michele</h1>
-                                <p>Ultimo messaggio inviato</p>
+                                <p>Ultimo accesso oggi alle 12:00</p>
                             </section>
-                            <p class="ora">12:00</p>
+                        </div>
+                        <div class="icons">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-paperclip"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                     </div>
-                </aside>
-                <main id="chat-opened">
-    
+                    <section id="messages">
+                        <ul>
+                            <li class="sent">
+                                <div class="content">
+                                    <p>Hai portato a spasso il cane?</p>
+                                    <p class="ora">12:00</p>
+                                </div>
+                            </li>
+                            <li class="sent">
+                                <div class="content">
+                                    <p>Ricordati di stendere i panni</p>
+                                    <p class="ora">12:00</p>
+                                </div>
+                            </li>
+                            <li class="received">
+                                <div class="content">
+                                    <p>Tutto fatto!</p>
+                                    <p class="ora">12:00</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    <footer>
+                        <i class="fa-regular fa-face-smile"></i>
+                        <input type="text" placeholder="Scrivi un messaggio">
+                        <i class="fa-solid fa-microphone"></i>
+                    </footer>
                 </main>
             </div>
         </main>
