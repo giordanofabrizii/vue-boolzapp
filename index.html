@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolzapp</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
     <!-- Fontawesome 6.5.2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -20,10 +24,10 @@
         </header>
         <main>
             <div id="app">
-                <div id="chat-list">
+                <aside id="chat-list">
                     <div class="heading">
                         <div class="person">
-                            <img src="./img/avatar_1.jpg" alt="">
+                            <img src="./img/avatar_io.jpg" alt="">
                             <h1>Sofia</h1>
                         </div>
                         <div class="icons">
@@ -39,10 +43,26 @@
                             <a href="">Attiva notifiche desktop</a>
                         </section>
                     </div>
-                </div>
-                <div id="chat-opened">
+                    <div id="search">
+                        <section>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Cerca o inizia una nuova chat">
+                        </section>
+                    </div>
+                    <div id="list">
+                        <div class="person">
+                            <img src="./img/avatar_1.jpg" alt="">
+                            <section>
+                                <h1>Michele</h1>
+                                <p>Ultimo messaggio inviato</p>
+                            </section>
+                            <p class="ora">12:00</p>
+                        </div>
+                    </div>
+                </aside>
+                <main id="chat-opened">
     
-                </div>
+                </main>
             </div>
         </main>
     </div>
