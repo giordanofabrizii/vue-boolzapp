@@ -48,17 +48,19 @@
                     <div id="search">
                         <section>
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" placeholder="Cerca o inizia una nuova chat">
+                            <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="searching">
                         </section>
                     </div>
                     <ul id="list">
-                        <li class="person" v-for="(person, index) in contacts" @click="changeChatOpened(index)">
-                            <img :src="person.avatar + '.jpg'" alt="Avatar image">
-                            <section>
-                                <h1>{{ person.name }}</h1>
-                                <p>{{ person.messages[person.messages.length - 1].message }}</p>
-                            </section>
-                            <p class="ora">{{ person.messages[person.messages.length - 1].date }}</p>
+                        <li v-for="(chat, index) in contacts" @click="changeChatOpened(index)" v-show="searchingChat(chat)">
+                            <div class="person">
+                                <img :src="chat.avatar + '.jpg'" alt="Avatar image">
+                                <section>
+                                    <h1>{{ chat.name }}</h1>
+                                    <p>{{ chat.messages[chat.messages.length - 1].message }}</p>
+                                </section>
+                                <p class="ora">{{ chat.messages[chat.messages.length - 1].date }}</p>
+                            </div>
                         </li>
                     </ul>
                 </aside>

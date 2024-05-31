@@ -90,7 +90,7 @@ main{
     color: #bfc4ca;
 }
 
-#list > .person:hover{
+#list  .person:hover{
     background-color: #e9ebeb;
 }
 

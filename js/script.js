@@ -167,7 +167,8 @@ createApp({
                 }
             ],
             openedChatIndex : 1,
-            newMessage: '',            
+            newMessage: '',
+            searching: ''            
         }
     },
     methods: {
@@ -184,6 +185,9 @@ createApp({
                 let received = { date: '12:00', message: 'Ok', status: 'received' };
                 this.contacts[this.openedChatIndex].messages.push(received);
             }, 1000);
+        },
+        searchingChat: function(person){
+            return (person.name.indexOf(this.searching) > -1)
         }
     }
 }).mount('#app');
