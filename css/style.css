@@ -3,3 +3,44 @@
     margin: 0;
     padding: 0;
 }
+
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+header {
+    height: 15%;
+    background-color: #009688;
+}
+
+main{
+    height: 85%;
+    background-color: #dadbd3;
+}
+
+#app {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translate(-50%);
+
+    width: 80%;
+    height: 93%;
+    background-color: white;
+
+    display: flex;
+}
+
+#chat-list {
+    width: 34%;
+    height: 100%;
+    background-color: red;
+}
+
+#chat-opened {
+    width: 70%;
+    height: 100%;
+    background-color: blue;
+}
