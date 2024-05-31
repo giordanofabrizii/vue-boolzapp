@@ -166,12 +166,24 @@ createApp({
                     ],
                 }
             ],
-            openedChatIndex : 1,            
+            openedChatIndex : 1,
+            newMessage: '',            
         }
     },
     methods: {
         changeChatOpened: function(index){
+            this.newMessage=''
             this.openedChatIndex= index;
+        },
+        sendMessage: function(){
+            let newMsg = {date: '12:00', message: this.newMessage, status: 'sent'};
+            this.contacts[this.openedChatIndex].messages.push(newMsg);
+            this.newMessage='';
+
+            setTimeout(() => {
+                let received = { date: '12:00', message: 'Ok', status: 'received' };
+                this.contacts[this.openedChatIndex].messages.push(received);
+            }, 1000);
         }
     }
 }).mount('#app');

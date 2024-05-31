@@ -18,8 +18,6 @@
     
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-    <script src=" https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js "></script>
-
 </head>
 <body>
     <div class="main-container">
@@ -91,14 +89,13 @@
                     </section>
                     <footer>
                         <i class="fa-regular fa-face-smile"></i>
-                        <input type="text" placeholder="Scrivi un messaggio">
+                        <input type="text" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage" v-model="newMessage">
                         <i class="fa-solid fa-microphone"></i>
                     </footer>
                 </main>
             </div>
         </main>
     </div>
-
     <script src="js/script.js"></script>
 </body>
 </html>
