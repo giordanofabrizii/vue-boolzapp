@@ -15,7 +15,11 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="img/whatsapp-logo.ico" type="image/x-icon">
 
+    
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script src=" https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js "></script>
+
 </head>
 <body>
     <div class="main-container">
@@ -50,22 +54,22 @@
                         </section>
                     </div>
                     <ul id="list">
-                        <li class="person" v-for="person in contacts">
+                        <li class="person" v-for="(person, index) in contacts" @click="changeChatOpened(index)">
                             <img :src="person.avatar + '.jpg'" alt="Avatar image">
                             <section>
                                 <h1>{{ person.name }}</h1>
-                                <p>Ultimo messaggio inviato</p>
+                                <p>{{ person.messages[person.messages.length - 1].message }}</p>
                             </section>
-                            <p class="ora">12:00</p>
+                            <p class="ora">{{ person.messages[person.messages.length - 1].date }}</p>
                         </li>
                     </ul>
                 </aside>
                 <main id="chat-opened">
                     <div class="heading">
                         <div class="person">
-                            <img src="./img/avatar_1.jpg" alt="">
+                            <img :src="contacts[openedChatIndex].avatar + '.jpg'" alt="">
                             <section>
-                                <h1>Michele</h1>
+                                <h1>{{ contacts[openedChatIndex].name }}</h1>
                                 <p>Ultimo accesso oggi alle 12:00</p>
                             </section>
                         </div>
@@ -77,21 +81,9 @@
                     </div>
                     <section id="messages">
                         <ul>
-                            <li class="sent">
+                            <li v-for="message in contacts[openedChatIndex].messages" :class="message.status">
                                 <div class="content">
-                                    <p>Hai portato a spasso il cane?</p>
-                                    <p class="ora">12:00</p>
-                                </div>
-                            </li>
-                            <li class="sent">
-                                <div class="content">
-                                    <p>Ricordati di stendere i panni</p>
-                                    <p class="ora">12:00</p>
-                                </div>
-                            </li>
-                            <li class="received">
-                                <div class="content">
-                                    <p>Tutto fatto!</p>
+                                    <p>{{ message.message }}</p>
                                     <p class="ora">12:00</p>
                                 </div>
                             </li>

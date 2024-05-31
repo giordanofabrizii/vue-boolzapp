@@ -165,7 +165,13 @@ createApp({
                         }
                     ],
                 }
-            ]            
+            ],
+            openedChatIndex : 1,            
+        }
+    },
+    methods: {
+        changeChatOpened: function(index){
+            this.openedChatIndex= index;
         }
     }
 }).mount('#app');
