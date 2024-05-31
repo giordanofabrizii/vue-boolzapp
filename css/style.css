@@ -246,3 +246,45 @@ main{
     bottom: .2rem;
     right: .2rem;
 }
+
+#messages .content:hover i{
+    display: block;
+}
+
+#messages .content i{
+    display: none;
+    width: 7rem;
+    height: 7rem;
+    text-align: end;
+}
+
+.content i:hover+.menu{
+    display: block;
+}
+
+.menu {
+    display: none;
+}
+
+.menu:hover {
+    display: none;
+}
+
+.dropdown {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    z-index: 1;
+}
+
+#messages .dropdown ul {
+    background-color: white;
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    width: 7rem;
+}
+
+#messages .dropdown ul li{
+    padding: .5rem;
+}

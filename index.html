@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="img/whatsapp-logo.ico" type="image/x-icon">
 
-    
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js "></script>
 
 </head>
 <body>
@@ -59,7 +59,7 @@
                                     <h1>{{ chat.name }}</h1>
                                     <p>{{ chat.messages[chat.messages.length - 1].message }}</p>
                                 </section>
-                                <p class="ora">{{ chat.messages[chat.messages.length - 1].date }}</p>
+                                <p class="ora">{{ formatDateTime(chat.messages[chat.messages.length - 1].date) }}</p>
                             </div>
                         </li>
                     </ul>
@@ -81,10 +81,17 @@
                     </div>
                     <section id="messages">
                         <ul>
-                            <li v-for="message in contacts[openedChatIndex].messages" :class="message.status">
+                            <li v-for="(message, index) in contacts[openedChatIndex].messages" :class="message.status">
                                 <div class="content">
                                     <p>{{ message.message }}</p>
-                                    <p class="ora">12:00</p>
+                                    <p class="ora">{{ formatDateTime(message.date) }}</p>
+                                    <span class="dropdown">
+                                        <i class="fa-solid fa-angle-down"></i>
+                                        <ul class="menu">
+                                            <li>Modifca</li>
+                                            <li @click="deleteMessage(index)">Elimina</li>
+                                        </ul>
+                                    </span>
                                 </div>
                             </li>
                         </ul>
