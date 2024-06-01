@@ -175,8 +175,11 @@ createApp({
     },
     methods: {
         changeChatOpened: function(index){
-            this.newMessage=''
+            this.newMessage='';
             this.openedChatIndex= index;
+            this.$nextTick(() => {
+                this.$refs.writeMessage.focus();
+            })
         },
         sendMessage: function(){
             let chat = this.contacts[this.openedChatIndex].messages;
@@ -188,6 +191,9 @@ createApp({
                 let received = { date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'), message: 'Ok', status: 'received' };
                 chat.push(received);
             }, 1000);
+
+            this.sortChats();
+            this.openedChatIndex = 0;
         },
         searchingChat: function(person){
             return (person.name.indexOf(this.searching) > -1)
@@ -197,6 +203,17 @@ createApp({
         },
         deleteMessage: function(index) {
             this.contacts[this.openedChatIndex].messages.splice(index,1)
+        },
+        sortChats: function(){
+            this.contacts.sort((a, b) => {
+                const dateA = DateTime.fromFormat(a.messages[a.messages.length - 1].date, 'dd/MM/yyyy HH:mm:ss');
+                const dateB = DateTime.fromFormat(b.messages[b.messages.length - 1].date, 'dd/MM/yyyy HH:mm:ss');
+                return dateB - dateA;
+            });
+            console.log(this.contacts)
         }
+    },
+    mounted() {
+        this.sortChats()
     }
 }).mount('#app');
