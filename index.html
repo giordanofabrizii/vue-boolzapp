@@ -59,7 +59,7 @@
                                     <h1>{{ chat.name }}</h1>
                                     <p>{{ chat.messages[chat.messages.length - 1].message }}</p>
                                 </section>
-                                <p class="ora">{{ formatDateTime(chat.messages[chat.messages.length - 1].date) }}</p>
+                                <p class="ora">{{ convertTheDate(chat.messages[chat.messages.length - 1].date) }}</p>
                             </div>
                         </li>
                     </ul>
@@ -70,7 +70,7 @@
                             <img :src="contacts[openedChatIndex].avatar + '.jpg'" alt="">
                             <section>
                                 <h1>{{ contacts[openedChatIndex].name }}</h1>
-                                <p>Ultimo accesso oggi alle 12:00</p>
+                                <p>{{ contacts[openedChatIndex].online }}</p>
                             </section>
                         </div>
                         <div class="icons">

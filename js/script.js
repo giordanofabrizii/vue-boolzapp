@@ -10,6 +10,7 @@ createApp({
                     name: 'Michele',
                     avatar: './img/avatar_1',
                     visible: true,
+                    online: '',
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -32,6 +33,7 @@ createApp({
                     name: 'Fabio',
                     avatar: './img/avatar_2',
                     visible: true,
+                    online: '',
                     messages: [
                         {
                             date: '20/03/2020 16:30:00',
@@ -54,6 +56,7 @@ createApp({
                     name: 'Samuele',
                     avatar: './img/avatar_3',
                     visible: true,
+                    online: '',
                     messages: [
                         {
                             date: '28/03/2020 10:10:40',
@@ -76,6 +79,7 @@ createApp({
                     name: 'Alessandro B.',
                     avatar: './img/avatar_4',
                     visible: true,
+                    online: '',
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -93,6 +97,7 @@ createApp({
                     name: 'Alessandro L.',
                     avatar: './img/avatar_5',
                     visible: true,
+                    online: '',
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -110,6 +115,7 @@ createApp({
                     name: 'Claudia',
                     avatar: './img/avatar_6',
                     visible: true,
+                    online: '',
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -132,6 +138,7 @@ createApp({
                     name: 'Federico',
                     avatar: './img/avatar_7',
                     visible: true,
+                    online: '',
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -149,6 +156,7 @@ createApp({
                     name: 'Davide',
                     avatar: './img/avatar_8',
                     visible: true,
+                    online: '',
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -184,9 +192,9 @@ createApp({
         },
         sendMessage: function(){
             if (this.newMessage.trim().length > 0 ) {
-                let chat = this.contacts[this.openedChatIndex].messages;
+                let person = this.contacts[this.openedChatIndex];
                 let newMsg = {date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'), message: this.newMessage, status: 'sent'};
-                chat.push(newMsg);
+                person.messages.push(newMsg);
                 this.newMessage='';
 
                 // scroll down to see the new messsage
@@ -194,18 +202,30 @@ createApp({
                     this.scrollDown();
                 });
 
+                // set the status to "writing"
+                person.online = 'Sta scrivendo...'
+
                 // message from the bot
                 setTimeout(() => {
                     let content = this.botAnswers[Math.floor(Math.random()*this.botAnswers.length)]
                     let received = { date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'), message: content, status: 'received' };
-                    chat.push(received);
+                    person.messages.push(received);
                     this.$nextTick(() => {
                         this.scrollDown();
+
+                        // set the status to online
+                        person.online = 'Online'
                     });
                 }, 1000);
+
     
                 this.sortChats();
                 this.openedChatIndex = 0;
+
+                // set the status to the last seen
+                setTimeout(() => {
+                    person.online = 'Last seen on ' + DateTime.now().toFormat('HH:mm')
+                }, 3000);                
             }
         },
         searchingChat: function(person){
@@ -230,9 +250,32 @@ createApp({
                 top: scrollableElement.scrollHeight,
                 behavior: 'smooth',
             });
+        },
+        convertTheDate: function(date){
+            let now = luxon.DateTime.now().toFormat('dd/MM/yyyy');
+            day = DateTime.fromFormat(date, 'dd/MM/yyyy HH:mm:ss').toFormat('dd/MM/yyyy');
+            if (day == now) {
+                return DateTime.fromFormat(date, 'dd/MM/yyyy HH:mm:ss').toFormat('HH:mm');
+            } else if (this.isYesterday(date)) {
+                return 'yesterday';
+            } else {
+                return day;
+            }
+        },
+        isYesterday: function(dateStr) {
+            const inputDate = DateTime.fromFormat(dateStr, 'dd/MM/yyyy HH:mm:ss');
+            const yesterday = DateTime.now().minus({ days: 1 }).startOf('day');
+            const today = DateTime.now().startOf('day');
+        
+            return inputDate >= yesterday && inputDate < today;
         }
+        
     },
     mounted() {
         this.sortChats();
+        this.contacts.forEach(contact => {
+            lastSeen = contact.messages[contact.messages.length-1].date;
+            contact.online = this.convertTheDate(lastSeen);
+        });
     }
 }).mount('#app');
