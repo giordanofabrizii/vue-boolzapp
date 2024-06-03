@@ -90,8 +90,12 @@ main{
     color: #bfc4ca;
 }
 
+.opened {
+    background-color: #e9ebeb
+}
+
 #list  .person:hover{
-    background-color: #e9ebeb;
+    background-color: #dadada;
 }
 
 .heading > .icons {

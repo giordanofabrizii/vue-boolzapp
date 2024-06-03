@@ -52,7 +52,7 @@
                         </section>
                     </div>
                     <ul id="list">
-                        <li v-for="(chat, index) in contacts" @click="changeChatOpened(index)" v-show="searchingChat(chat)">
+                        <li v-for="(chat, index) in contacts" @click="changeChatOpened(index)" v-show="searchingChat(chat)" :class="openedChatIndex == index ? 'opened' : ''">
                             <div class="person">
                                 <img :src="chat.avatar + '.jpg'" alt="Avatar image">
                                 <section>
