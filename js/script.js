@@ -170,7 +170,8 @@ createApp({
             ],
             openedChatIndex : 1,
             newMessage: '',
-            searching: ''            
+            searching: '',
+            botAnswers: ['Ok', 'Va bene!', 'Non ti preoccupare', 'Contami'],         
         }
     },
     methods: {
@@ -187,10 +188,20 @@ createApp({
                 let newMsg = {date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'), message: this.newMessage, status: 'sent'};
                 chat.push(newMsg);
                 this.newMessage='';
-    
+
+                // scroll down to see the new messsage
+                this.$nextTick(() => {
+                    this.scrollDown();
+                });
+
+                // message from the bot
                 setTimeout(() => {
-                    let received = { date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'), message: 'Ok', status: 'received' };
+                    let content = this.botAnswers[Math.floor(Math.random()*this.botAnswers.length)]
+                    let received = { date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'), message: content, status: 'received' };
                     chat.push(received);
+                    this.$nextTick(() => {
+                        this.scrollDown();
+                    });
                 }, 1000);
     
                 this.sortChats();
@@ -211,6 +222,13 @@ createApp({
                 const dateA = DateTime.fromFormat(a.messages[a.messages.length - 1].date, 'dd/MM/yyyy HH:mm:ss');
                 const dateB = DateTime.fromFormat(b.messages[b.messages.length - 1].date, 'dd/MM/yyyy HH:mm:ss');
                 return dateB - dateA;
+            });
+        },
+        scrollDown: function(){
+            const scrollableElement = document.getElementById('messages');
+            scrollableElement.scrollTo({
+                top: scrollableElement.scrollHeight,
+                behavior: 'smooth',
             });
         }
     },
