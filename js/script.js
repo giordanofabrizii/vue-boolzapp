@@ -196,7 +196,7 @@ createApp({
             this.openedChatIndex = 0;
         },
         searchingChat: function(person){
-            return (person.name.indexOf(this.searching) > -1)
+            return (person.name.toLowerCase().indexOf(this.searching.toLowerCase()) > -1);
         },
         formatDateTime: function(date) {
             return DateTime.fromFormat(date, 'dd/MM/yyyy HH:mm:ss').toFormat('HH:mm');
@@ -210,10 +210,9 @@ createApp({
                 const dateB = DateTime.fromFormat(b.messages[b.messages.length - 1].date, 'dd/MM/yyyy HH:mm:ss');
                 return dateB - dateA;
             });
-            console.log(this.contacts)
         }
     },
     mounted() {
-        this.sortChats()
+        this.sortChats();
     }
 }).mount('#app');
