@@ -64,7 +64,13 @@
                         </li>
                     </ul>
                 </aside>
-                <main id="chat-opened">
+
+                <section v-if="!(openedChatIndex)" class="empty-chat">
+                    <h1>Ciao!</h1>
+                    <p>Clicca su una contatto per visualizzarne i messaggi</p>
+                </section>
+
+                <main id="chat-opened" v-else>
                     <div class="heading">
                         <div class="person">
                             <img :src="contacts[openedChatIndex].avatar + '.jpg'" alt="">

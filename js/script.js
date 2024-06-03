@@ -176,7 +176,7 @@ createApp({
                     ],
                 }
             ],
-            openedChatIndex : 1,
+            openedChatIndex : null,
             newMessage: '',
             searching: '',
             botAnswers: ['Ok', 'Va bene!', 'Non ti preoccupare', 'Contami'],         

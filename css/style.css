@@ -169,6 +169,19 @@ main{
     overflow: scroll;
 }
 
+/* ###################### */
+/* ! EMPTY CHAT */
+/* ###################### */
+
+.empty-chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 64%;
+    height: 100%;
+    background-color: #f9f9f9;
+}
 
 /* ###################### */
 /* ! CHAT OPENED */
