@@ -270,7 +270,9 @@ createApp({
             return inputDate >= yesterday && inputDate < today;
         },
         chatOptionsShow: function(){
-            document.getElementById('chat-options').classList.toggle('none');            
+            if (document.getElementById('chat-options')){
+                document.getElementById('chat-options').classList.toggle('none');            
+            }
         },
         deleteChat: function(){
             this.contacts.splice(this.openedChatIndex, 1);
