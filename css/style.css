@@ -206,7 +206,18 @@ main{
     border: none;
     border-radius: .3rem;
     padding: 0 1rem;
-    width: calc(100% - 11rem);
+    width: calc(100% - 12rem);
+}
+
+#chat-opened footer i.send-message{
+    width: 2rem;
+    aspect-ratio: 1 / 1;
+    background-color: #009688;
+    border-radius: 50%;
+    line-height: 2rem;
+    text-align: center;
+    color: white;
+    font-size: 1rem;
 }
 
 #messages ul{
