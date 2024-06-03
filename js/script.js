@@ -182,18 +182,20 @@ createApp({
             })
         },
         sendMessage: function(){
-            let chat = this.contacts[this.openedChatIndex].messages;
-            let newMsg = {date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'), message: this.newMessage, status: 'sent'};
-            chat.push(newMsg);
-            this.newMessage='';
-
-            setTimeout(() => {
-                let received = { date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'), message: 'Ok', status: 'received' };
-                chat.push(received);
-            }, 1000);
-
-            this.sortChats();
-            this.openedChatIndex = 0;
+            if (this.newMessage.trim().length > 0 ) {
+                let chat = this.contacts[this.openedChatIndex].messages;
+                let newMsg = {date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'), message: this.newMessage, status: 'sent'};
+                chat.push(newMsg);
+                this.newMessage='';
+    
+                setTimeout(() => {
+                    let received = { date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'), message: 'Ok', status: 'received' };
+                    chat.push(received);
+                }, 1000);
+    
+                this.sortChats();
+                this.openedChatIndex = 0;
+            }
         },
         searchingChat: function(person){
             return (person.name.toLowerCase().indexOf(this.searching.toLowerCase()) > -1);
