@@ -176,7 +176,7 @@ createApp({
                     ],
                 }
             ],
-            openedChatIndex : null,
+            openedChatIndex : 'not opened',
             newMessage: '',
             searching: '',
             botAnswers: ['Ok', 'Va bene!', 'Non ti preoccupare', 'Contami'],         
@@ -185,7 +185,7 @@ createApp({
     methods: {
         changeChatOpened: function(index){
             this.newMessage='';
-            this.openedChatIndex= index;
+            this.openedChatIndex = index;
             this.$nextTick(() => {
                 this.$refs.writeMessage.focus();
             })
@@ -268,8 +268,17 @@ createApp({
             const today = DateTime.now().startOf('day');
         
             return inputDate >= yesterday && inputDate < today;
+        },
+        chatOptionsShow: function(){
+            document.getElementById('chat-options').classList.toggle('none');            
+        },
+        deleteChat: function(){
+            this.contacts.splice(this.openedChatIndex, 1);
+            this.openedChatIndex = 'not opened';
+        },
+        deleteAllMessages: function(){
+            this.contacts[this.openedChatIndex].messages = [];
         }
-        
     },
     mounted() {
         this.sortChats();

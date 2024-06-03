@@ -316,3 +316,32 @@ main{
 #messages .dropdown ul li{
     padding: .5rem;
 }
+
+/* ###################### */
+/* ! CHAT OPTIONS */
+/* ###################### */
+
+#chat-options.none{
+    display: none;
+}
+
+#chat-options {
+    position: absolute;
+    width: 13rem;
+    background-color: white;
+    padding: 0 1rem;
+    right: 1.8rem;
+    z-index: 2;
+}
+
+#chat-options li{
+    margin: 1rem 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+.fa-ellipsis-vertical {
+    width: 1rem;
+}

@@ -57,15 +57,15 @@
                                 <img :src="chat.avatar + '.jpg'" alt="Avatar image">
                                 <section>
                                     <h1>{{ chat.name }}</h1>
-                                    <p>{{ chat.messages[chat.messages.length - 1].message }}</p>
+                                    <p v-if="chat.messages.length > 0">{{ chat.messages[chat.messages.length - 1].message }}</p>
                                 </section>
-                                <p class="ora">{{ convertTheDate(chat.messages[chat.messages.length - 1].date) }}</p>
+                                <p v-if="chat.messages.length > 0" class="ora">{{ convertTheDate(chat.messages[chat.messages.length - 1].date) }}</p>
                             </div>
                         </li>
                     </ul>
                 </aside>
 
-                <section v-if="!(openedChatIndex)" class="empty-chat">
+                <section v-if="isNaN(openedChatIndex)" class="empty-chat">
                     <h1>Ciao!</h1>
                     <p>Clicca su una contatto per visualizzarne i messaggi</p>
                 </section>
@@ -82,7 +82,12 @@
                         <div class="icons">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <i class="fa-solid fa-paperclip"></i>
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <i class="fa-solid fa-ellipsis-vertical" @click="chatOptionsShow">
+                                <ul id="chat-options" class="none">
+                                    <li @click="deleteChat">Elimina chat</li>
+                                    <li @click="deleteAllMessages">Elimina messaggi</li>
+                                </ul>
+                            </i>
                         </div>
                     </div>
                     <section id="messages">
