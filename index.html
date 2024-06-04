@@ -34,7 +34,7 @@
                         </div>
                         <div class="icons">
                             <i class="fa-solid fa-circle-notch"></i>
-                            <i class="fa-solid fa-message"></i>
+                            <i class="fa-solid fa-message" @click="this.newChatDisplay = this.newChatDisplay == 'none' ? '' : 'none';"></i>
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                     </div>
@@ -52,9 +52,14 @@
                         </section>
                     </div>
                     <ul id="list">
-                        <li v-for="(chat, index) in contacts" @click="changeChatOpened(index)" v-show="searchingChat(chat)" :class="openedChatIndex == index ? 'opened' : ''">
+                    <li id="new-chat" :class="newChatDisplay">
+                        <input type="text" id="new-chat-name" placeholder="Nome chat" v-model="newChatName">
+                        <input type="text" id="new-chat-image" placeholder="Immagine profilo" v-model="newChatImg">
+                        <input type="submit" value="Start chatting" @click="addChat">
+                    </li>
+                    <li v-for="(chat, index) in contacts" @click="changeChatOpened(index)" v-show="searchingChat(chat)" :class="openedChatIndex == index ? 'opened' : ''">
                             <div class="person">
-                                <img :src="chat.avatar + '.jpg'" alt="Avatar image">
+                                <img :src="chat.avatar" alt="Avatar image">
                                 <section>
                                     <h1>{{ chat.name }}</h1>
                                     <p v-if="chat.messages.length > 0">{{ chat.messages[chat.messages.length - 1].message }}</p>
@@ -73,7 +78,7 @@
                 <main id="chat-opened" v-else>
                     <div class="heading">
                         <div class="person">
-                            <img :src="contacts[openedChatIndex].avatar + '.jpg'" alt="">
+                            <img :src="contacts[openedChatIndex].avatar" alt="">
                             <section>
                                 <h1>{{ contacts[openedChatIndex].name }}</h1>
                                 <p>{{ contacts[openedChatIndex].online }}</p>

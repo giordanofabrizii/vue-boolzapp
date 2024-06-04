@@ -42,7 +42,6 @@ main{
 #chat-list {
     width: 36%;
     height: 100%;
-    background-color: red;
     border-right: 1px solid #dedede;
 }
 
@@ -167,6 +166,25 @@ main{
     background-color: white;
     height: calc(100% - 12.2rem);
     overflow: scroll;
+}
+
+/* ###################### */
+/* ! NEW CHAT */
+/* ###################### */
+
+#new-chat{
+    padding: .3rem;
+    display: flex;
+    justify-content: space-around;
+    background-color: #ff6161;
+}
+
+#new-chat.none{
+    display: none;
+}
+
+#new-chat input[type="text"]{
+    padding: .2rem;
 }
 
 /* ###################### */
