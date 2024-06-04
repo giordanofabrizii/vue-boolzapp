@@ -74,11 +74,16 @@ main{
 .person > section > h1 {
     font-size: 1rem;
     font-weight: 400;
+    overflow: hidden;
+    width: 10rem;
+    text-overflow: ellipsis;
 }
 
 .person > section > p {
     color: #bfc4ca;
     font-size: .8rem;
+    width: 20rem;
+    text-overflow: ellipsis;
 }
 
 .person > .ora {
